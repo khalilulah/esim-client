@@ -1,0 +1,158 @@
+[
+  {
+    "id": "1",
+    "name": "Midnight Oud",
+    "category": "fragrance",
+    "price": 120.0,
+    "images": [
+      "https://images.unsplash.com/photo-1594035910387-fea47794261f?w=700&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8cGVyZnVtZXxlbnwwfHwwfHx8MA%3D%3D",
+      "https://i.pinimg.com/736x/e1/0d/e0/e10de0e5d0d9398818a33b8c21419796.jpg",
+      "https://i.pinimg.com/736x/a1/b2/c3/a1b2c3d4e5f6a7b8c9d0e1f2a3b4c5d6.jpg"
+    ],
+    "description": "A rich and intoxicating blend of dark oud, warm amber, and smoky sandalwood. Midnight Oud is a bold statement fragrance for those who command attention. Its deep, resinous character lingers on the skin long after the first spray, evolving beautifully through the day.",
+    "ingredients": [
+      "Oud Wood Extract",
+      "Amber Resin",
+      "Sandalwood Oil",
+      "Benzyl Benzoate",
+      "Linalool",
+      "Citronellol",
+      "Bergamot Oil",
+      "Patchouli Oil",
+      "Musk",
+      "Alcohol Denat."
+    ],
+    "howToUse": "Spray 2–3 times onto pulse points — wrists, neck, and behind the ears. Hold the bottle 15–20cm from your skin. For longer lasting scent, apply to moisturised skin or layer over an unscented body lotion. Do not rub wrists together after application."
+  },
+  {
+    "id": "2",
+    "name": "Soleil Blanc",
+    "category": "fragrance",
+    "price": 95.0,
+    "images": [
+      "https://images.pexels.com/photos/1961791/pexels-photo-1961791.jpeg?cs=srgb&dl=pexels-valeriya-1961791.jpg&fm=jpg",
+      "https://i.pinimg.com/736x/c3/d4/e5/c3d4e5f6a7b8c9d0e1f2a3b4c5d6e7f8.jpg",
+      "https://i.pinimg.com/736x/d4/e5/f6/d4e5f6a7b8c9d0e1f2a3b4c5d6e7f8a9.jpg"
+    ],
+    "description": "A luminous, sun-drenched fragrance that captures the warmth of a Mediterranean afternoon. Notes of white tiare flower, coconut milk, and soft vanilla create an effortlessly elegant scent that feels like a second skin. Light, sensual, and universally wearable.",
+    "ingredients": [
+      "Tiare Flower Absolute",
+      "Coconut Milk Extract",
+      "Vanilla Planifolia",
+      "Ylang Ylang Oil",
+      "Ambrette Seed",
+      "Benzyl Salicylate",
+      "Coumarin",
+      "Ethylene Brassylate",
+      "Musk Ketone",
+      "Alcohol Denat."
+    ],
+    "howToUse": "Apply to clean, dry skin on pulse points for best results. Spray lightly on hair for a subtle scented trail. Reapply midday if desired. Store away from direct sunlight and heat to preserve the fragrance integrity."
+  },
+  {
+    "id": "3",
+    "name": "Noir Absolu",
+    "category": "fragrance",
+    "price": 145.0,
+    "images": [
+      "https://images.unsplash.com/photo-1557170334-a9632e77c6e4?w=700&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fHBlcmZ1bWV8ZW58MHx8MHx8fDA%3D",
+      "https://i.pinimg.com/736x/f6/a7/b8/f6a7b8c9d0e1f2a3b4c5d6e7f8a9b0c1.jpg",
+      "https://i.pinimg.com/736x/a7/b8/c9/a7b8c9d0e1f2a3b4c5d6e7f8a9b0c1d2.jpg"
+    ],
+    "description": "An enigmatic oriental fragrance built around rare black iris, dark rose, and aged vetiver. Noir Absolu is a masterclass in contrast — simultaneously sharp and velvety, mysterious and inviting. Designed for evenings that demand an unforgettable impression.",
+    "ingredients": [
+      "Black Iris Absolute",
+      "Bulgarian Rose Otto",
+      "Vetiver Root Oil",
+      "Cedarwood Oil",
+      "Labdanum Resin",
+      "Iso E Super",
+      "Ambroxan",
+      "Geraniol",
+      "Eugenol",
+      "Alcohol Denat."
+    ],
+    "howToUse": "Spray 2 times onto pulse points before going out. Allow the fragrance to dry naturally on the skin — do not rub. For an enveloping effect, lightly mist the air in front of you and walk through the cloud. Best applied 30 minutes before an event to allow the top notes to settle."
+  },
+  {
+    "id": "4",
+    "name": "Velvet Repair Shampoo",
+    "category": "hair product",
+    "price": 38.0,
+    "images": [
+      "https://i.pinimg.com/736x/b8/c9/d0/b8c9d0e1f2a3b4c5d6e7f8a9b0c1d2e3.jpg",
+      "https://i.pinimg.com/736x/c9/d0/e1/c9d0e1f2a3b4c5d6e7f8a9b0c1d2e3f4.jpg",
+      "https://i.pinimg.com/736x/d0/e1/f2/d0e1f2a3b4c5d6e7f8a9b0c1d2e3f4a5.jpg"
+    ],
+    "description": "A luxurious, protein-rich shampoo that gently cleanses while rebuilding damaged hair from within. Formulated with hydrolysed keratin and argan oil, Velvet Repair targets breakage, frizz, and dryness — leaving hair noticeably smoother, stronger, and more lustrous after just one wash.",
+    "ingredients": [
+      "Aqua",
+      "Sodium Lauryl Sulfoacetate",
+      "Cocamidopropyl Betaine",
+      "Hydrolysed Keratin",
+      "Argania Spinosa (Argan) Kernel Oil",
+      "Panthenol (Vitamin B5)",
+      "Glycerin",
+      "Niacinamide",
+      "Cetrimonium Chloride",
+      "Citric Acid",
+      "Sodium Benzoate",
+      "Parfum"
+    ],
+    "howToUse": "Wet hair thoroughly with warm water. Apply a generous amount of Velvet Repair Shampoo to the scalp and work into a lather using fingertips — not nails. Massage gently for 60 seconds, focusing on the roots. Rinse thoroughly. For best results, follow with Velvet Repair Conditioner. Use 3–4 times per week."
+  },
+  {
+    "id": "5",
+    "name": "Velvet Repair Conditioner",
+    "category": "hair product",
+    "price": 42.0,
+    "images": [
+      "https://i.pinimg.com/736x/e1/f2/a3/e1f2a3b4c5d6e7f8a9b0c1d2e3f4a5b6.jpg",
+      "https://i.pinimg.com/736x/f2/a3/b4/f2a3b4c5d6e7f8a9b0c1d2e3f4a5b6c7.jpg",
+      "https://i.pinimg.com/736x/a3/b4/c5/a3b4c5d6e7f8a9b0c1d2e3f4a5b6c7d8.jpg"
+    ],
+    "description": "A deeply nourishing conditioner that seals the hair cuticle and restores elasticity to over-processed or heat-damaged hair. Infused with shea butter, silk amino acids, and rosehip oil, it detangles effortlessly and delivers intense moisture without weighing hair down.",
+    "ingredients": [
+      "Aqua",
+      "Cetearyl Alcohol",
+      "Behentrimonium Chloride",
+      "Butyrospermum Parkii (Shea) Butter",
+      "Silk Amino Acids",
+      "Rosa Canina (Rosehip) Seed Oil",
+      "Hydrolysed Keratin",
+      "Panthenol",
+      "Tocopheryl Acetate (Vitamin E)",
+      "Glycerin",
+      "Disodium EDTA",
+      "Parfum"
+    ],
+    "howToUse": "After shampooing, squeeze excess water from hair. Apply Velvet Repair Conditioner from mid-lengths to ends — avoid the scalp. Comb through with a wide-tooth comb to distribute evenly. Leave on for 3–5 minutes (or up to 20 minutes under a shower cap for deep conditioning). Rinse thoroughly with cool water to seal the cuticle and maximise shine."
+  },
+  {
+    "id": "6",
+    "name": "Scalp Revival Serum",
+    "category": "hair product",
+    "price": 65.0,
+    "images": [
+      "https://i.pinimg.com/736x/b4/c5/d6/b4c5d6e7f8a9b0c1d2e3f4a5b6c7d8e9.jpg",
+      "https://i.pinimg.com/736x/c5/d6/e7/c5d6e7f8a9b0c1d2e3f4a5b6c7d8e9f0.jpg",
+      "https://i.pinimg.com/736x/d6/e7/f8/d6e7f8a9b0c1d2e3f4a5b6c7d8e9f0a1.jpg"
+    ],
+    "description": "A targeted scalp treatment formulated to soothe irritation, reduce flakiness, and stimulate healthy hair growth. Powered by a potent blend of caffeine, niacinamide, and peppermint oil, this lightweight serum absorbs instantly and revitalises the scalp environment for thicker, healthier-looking hair over time.",
+    "ingredients": [
+      "Aqua",
+      "Caffeine",
+      "Niacinamide",
+      "Mentha Piperita (Peppermint) Leaf Oil",
+      "Salicylic Acid",
+      "Zinc PCA",
+      "Biotin",
+      "Saw Palmetto Extract",
+      "Hyaluronic Acid",
+      "Glycerin",
+      "Phenoxyethanol",
+      "Ethylhexylglycerin"
+    ],
+    "howToUse": "Apply to a dry or towel-dried scalp 2–3 times per week. Part hair into sections and use the dropper to apply directly to the scalp. Massage in using fingertips for 2–3 minutes to stimulate circulation. Do not rinse out. Style as usual. For visible results, use consistently for a minimum of 8 weeks. Avoid contact with eyes."
+  }
+]
