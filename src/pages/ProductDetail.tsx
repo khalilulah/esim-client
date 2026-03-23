@@ -1,14 +1,17 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import products from "../data/products.json";
+
 import Navbar from "../components/Navbar";
 import type { Product } from "../types";
 import { useCartStore } from "../store/cartStore";
+import { getProductById } from "../services/product.service";
 
 function ProductDetail() {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
-  const product = products.find((p) => p.id === id) as Product | undefined;
+  const [product, setProduct] = useState<Product | null>(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState("");
   const [activeImage, setActiveImage] = useState(0);
   const [activeTab, setActiveTab] = useState<
     "description" | "ingredients" | "howToUse"
@@ -17,16 +20,46 @@ function ProductDetail() {
   const [added, setAdded] = useState(false);
   const addToCart = useCartStore((state) => state.addToCart);
 
-  if (!product) {
+  useEffect(() => {
+    const fetchProduct = async () => {
+      try {
+        const data = await getProductById(id as string);
+        setProduct(data);
+      } catch {
+        setError("Product not found.");
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchProduct();
+  }, [id]);
+
+  if (loading) {
     return (
-      <div className="min-h-screen flex flex-col items-center justify-center gap-4">
-        <p className="font-League text-4xl uppercase">Product not found</p>
-        <button
-          onClick={() => navigate("/")}
-          className="outline-2 outline-black outline-offset-4 px-10 py-3 font-League text-lg uppercase cursor-pointer"
-        >
-          Back to Store
-        </button>
+      <div className="min-h-screen">
+        <Navbar />
+        <div className="flex justify-center items-center h-64">
+          <p className="uppercase tracking-widest text-sm text-neutral-400">
+            Loading...
+          </p>
+        </div>
+      </div>
+    );
+  }
+
+  if (error || !product) {
+    return (
+      <div className="min-h-screen">
+        <Navbar />
+        <div className="flex flex-col items-center justify-center gap-4 h-64">
+          <p className="font-League text-4xl uppercase">Product not found</p>
+          <button
+            onClick={() => navigate("/")}
+            className="outline-2 outline-black outline-offset-4 px-10 py-3 font-League text-lg uppercase cursor-pointer"
+          >
+            Back to Store
+          </button>
+        </div>
       </div>
     );
   }
@@ -48,7 +81,6 @@ function ProductDetail() {
       <Navbar />
 
       <div className="px-4 md:px-20 py-12">
-        {/* Back button */}
         <button
           onClick={() => navigate(-1)}
           className="flex items-center gap-2 text-neutral-500 hover:text-neutral-900 transition-colors mb-10 cursor-pointer"
@@ -58,7 +90,7 @@ function ProductDetail() {
         </button>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
-          {/* ── LEFT — Image gallery ── */}
+          {/* Image gallery */}
           <div className="flex gap-4">
             <div className="flex flex-col gap-3">
               {product.images.map((img, i) => (
@@ -89,7 +121,7 @@ function ProductDetail() {
             </div>
           </div>
 
-          {/* ── RIGHT — Product info ── */}
+          {/* Product info */}
           <div className="flex flex-col justify-between">
             <div>
               <p className="uppercase tracking-widest text-sm text-neutral-400 mb-2">
@@ -101,7 +133,6 @@ function ProductDetail() {
               >
                 {product.name}
               </h1>
-
               <p className="font-League text-4xl mb-10">
                 ${product.price.toFixed(2)}
               </p>
@@ -148,9 +179,8 @@ function ProductDetail() {
               </div>
             </div>
 
-            {/* ── Quantity + CTA ── */}
+            {/* Quantity + CTA */}
             <div className="mt-12 flex flex-col gap-6">
-              {/* Quantity selector */}
               <div className="flex items-center gap-4">
                 <span className="uppercase tracking-widest text-sm text-neutral-500">
                   Qty
@@ -177,7 +207,6 @@ function ProductDetail() {
                 </span>
               </div>
 
-              {/* Buttons */}
               <div className="flex flex-col sm:flex-row gap-4">
                 <button
                   onClick={handleAddToCart}

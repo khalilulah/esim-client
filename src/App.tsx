@@ -1,7 +1,27 @@
+import { useEffect, useState } from "react";
 import Navbar from "./components/Navbar";
 import ProductBrief from "./components/ProductBreif";
+import { getProducts } from "./services/product.service";
+import type { Product } from "./types";
 
 function App() {
+  const [products, setProducts] = useState<Product[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState("");
+
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        const data = await getProducts();
+        setProducts(data);
+      } catch {
+        setError("Failed to load products.");
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchProducts();
+  }, []);
   return (
     <div className="">
       <Navbar />
@@ -40,7 +60,25 @@ function App() {
           Explore
         </button>
       </div>
-      <ProductBrief />
+      <div className="mt-20">
+        {loading && (
+          <div className="flex justify-center py-20">
+            <p className="uppercase tracking-widest text-sm text-neutral-400">
+              Loading products...
+            </p>
+          </div>
+        )}
+
+        {error && (
+          <div className="flex justify-center py-20">
+            <p className="uppercase tracking-widest text-sm text-red-400">
+              {error}
+            </p>
+          </div>
+        )}
+
+        {!loading && !error && <ProductBrief products={products} />}
+      </div>
     </div>
   );
 }

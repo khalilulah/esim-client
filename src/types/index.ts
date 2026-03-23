@@ -1,14 +1,15 @@
 export type ProductCategory = string;
 
 export interface Product {
-  id: string;
+  _id: string;
   name: string;
-  category: ProductCategory;
+  category: string;
   price: number;
   images: string[];
-
-  // these might not be filled yet
   description?: string;
   ingredients?: string[];
   howToUse?: string;
+  inStock: boolean;
+  createdAt: string;
+  updatedAt: string;
 }

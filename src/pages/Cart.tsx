@@ -66,14 +66,14 @@ function Cart() {
           <div className="lg:col-span-2 flex flex-col gap-8">
             {items.map(({ product, quantity }) => (
               <div
-                key={product.id}
+                key={product._id}
                 className="flex gap-6 border-b border-neutral-100 pb-8"
               >
                 {/* Image */}
                 <div
                   className="shrink-0 overflow-hidden bg-neutral-100 cursor-pointer"
                   style={{ width: "100px", height: "130px" }}
-                  onClick={() => navigate(`/product/${product.id}`)}
+                  onClick={() => navigate(`/product/${product._id}`)}
                 >
                   <img
                     src={product.images?.[0] ?? "/placeholder.jpg"}
@@ -91,7 +91,7 @@ function Cart() {
                     <h3
                       className="font-League uppercase leading-none cursor-pointer hover:text-neutral-500 transition-colors"
                       style={{ fontSize: "clamp(20px, 3vw, 36px)" }}
-                      onClick={() => navigate(`/product/${product.id}`)}
+                      onClick={() => navigate(`/product/${product._id}`)}
                     >
                       {product.name}
                     </h3>
@@ -101,7 +101,9 @@ function Cart() {
                     {/* Quantity */}
                     <div className="flex items-center border border-neutral-300">
                       <button
-                        onClick={() => updateQuantity(product.id, quantity - 1)}
+                        onClick={() =>
+                          updateQuantity(product._id, quantity - 1)
+                        }
                         className="w-8 h-8 flex items-center justify-center hover:bg-neutral-100 transition-colors cursor-pointer"
                       >
                         −
@@ -110,7 +112,9 @@ function Cart() {
                         {quantity}
                       </span>
                       <button
-                        onClick={() => updateQuantity(product.id, quantity + 1)}
+                        onClick={() =>
+                          updateQuantity(product._id, quantity + 1)
+                        }
                         className="w-8 h-8 flex items-center justify-center hover:bg-neutral-100 transition-colors cursor-pointer"
                       >
                         +
@@ -123,7 +127,7 @@ function Cart() {
                         ${(product.price * quantity).toFixed(2)}
                       </span>
                       <button
-                        onClick={() => removeFromCart(product.id)}
+                        onClick={() => removeFromCart(product._id)}
                         className="text-neutral-300 hover:text-red-500 transition-colors cursor-pointer text-xl leading-none"
                       >
                         ×
