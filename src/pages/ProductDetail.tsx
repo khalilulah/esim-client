@@ -1,17 +1,13 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-
-import Navbar from "../components/Navbar";
-import type { Product } from "../types";
-import { useCartStore } from "../store/cartStore";
+import { useQuery } from "@tanstack/react-query";
 import { getProductById } from "../services/product.service";
+import Navbar from "../components/Navbar";
+import { useCartStore } from "../store/cartStore";
 
 function ProductDetail() {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
-  const [product, setProduct] = useState<Product | null>(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState("");
   const [activeImage, setActiveImage] = useState(0);
   const [activeTab, setActiveTab] = useState<
     "description" | "ingredients" | "howToUse"
@@ -20,26 +16,35 @@ function ProductDetail() {
   const [added, setAdded] = useState(false);
   const addToCart = useCartStore((state) => state.addToCart);
 
-  useEffect(() => {
-    const fetchProduct = async () => {
-      try {
-        const data = await getProductById(id as string);
-        setProduct(data);
-      } catch {
-        setError("Product not found.");
-      } finally {
-        setLoading(false);
-      }
-    };
-    fetchProduct();
-  }, [id]);
+  const {
+    data: product,
+    isLoading,
+    isError,
+  } = useQuery({
+    queryKey: ["product", id], // cached per product id — each product has its own cache entry
+    queryFn: () => getProductById(id as string),
+    enabled: !!id, // don't run if id is undefined
+  });
 
-  if (loading) {
+  const tabs = [
+    { key: "description", label: "Description" },
+    { key: "ingredients", label: "Ingredients" },
+    { key: "howToUse", label: "How to Use" },
+  ] as const;
+
+  const handleAddToCart = () => {
+    if (!product) return;
+    addToCart(product, quantity);
+    setAdded(true);
+    setTimeout(() => setAdded(false), 2000);
+  };
+
+  if (isLoading) {
     return (
       <div className="min-h-screen">
         <Navbar />
         <div className="flex justify-center items-center h-64">
-          <p className="uppercase tracking-widest text-sm text-neutral-400">
+          <p className="uppercase tracking-widest text-sm text-neutral-400 animate-pulse">
             Loading...
           </p>
         </div>
@@ -47,7 +52,7 @@ function ProductDetail() {
     );
   }
 
-  if (error || !product) {
+  if (isError || !product) {
     return (
       <div className="min-h-screen">
         <Navbar />
@@ -64,22 +69,9 @@ function ProductDetail() {
     );
   }
 
-  const tabs = [
-    { key: "description", label: "Description" },
-    { key: "ingredients", label: "Ingredients" },
-    { key: "howToUse", label: "How to Use" },
-  ] as const;
-
-  const handleAddToCart = () => {
-    addToCart(product, quantity);
-    setAdded(true);
-    setTimeout(() => setAdded(false), 2000);
-  };
-
   return (
     <div className="min-h-screen">
       <Navbar />
-
       <div className="px-4 md:px-20 py-12">
         <button
           onClick={() => navigate(-1)}
@@ -111,7 +103,6 @@ function ProductDetail() {
                 </button>
               ))}
             </div>
-
             <div className="flex-1 aspect-[3/4] overflow-hidden bg-neutral-100">
               <img
                 src={product.images[activeImage]}

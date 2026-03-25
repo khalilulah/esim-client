@@ -1,19 +1,51 @@
-import React from "react";
-import ReactDOM from "react-dom/client";
+import { StrictMode, lazy, Suspense } from "react";
+import { createRoot } from "react-dom/client";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import App from "./App";
-import ProductDetail from "./pages/ProductDetail";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import "./index.css";
-import Cart from "./pages/Cart";
+import PageLoader from "./components/PageLoader";
+import WhatsAppButton from "./components/WhatsAppButton";
 
-ReactDOM.createRoot(document.getElementById("root")!).render(
-  <React.StrictMode>
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<App />} />
-        <Route path="/product/:id" element={<ProductDetail />} />
-        <Route path="/cart" element={<Cart />} />
-      </Routes>
-    </BrowserRouter>
-  </React.StrictMode>,
+// Lazy load all pages — each page is only downloaded when first visited
+const Home = lazy(() => import("./pages/Home"));
+const ProductDetail = lazy(() => import("./pages/ProductDetail"));
+const Cart = lazy(() => import("./pages/Cart"));
+const About = lazy(() => import("./pages/About"));
+const Shipping = lazy(() => import("./pages/Shipping"));
+const Returns = lazy(() => import("./pages/Returns"));
+const Contact = lazy(() => import("./pages/Contact"));
+const FAQ = lazy(() => import("./pages/FAQ"));
+
+// Cache config — data stays fresh for 5 minutes, cached for 10 minutes
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      staleTime: 5 * 60 * 1000, // 5 min — won't refetch if data is younger than this
+      gcTime: 10 * 60 * 1000, // 10 min — keeps data in memory after component unmounts
+      retry: 1, // retry failed requests once before showing error
+      refetchOnWindowFocus: false, // don't refetch when user switches tabs
+    },
+  },
+});
+
+createRoot(document.getElementById("root")!).render(
+  <StrictMode>
+    <QueryClientProvider client={queryClient}>
+      <WhatsAppButton />
+      <BrowserRouter>
+        <Suspense fallback={<PageLoader />}>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/product/:id" element={<ProductDetail />} />
+            <Route path="/cart" element={<Cart />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/shipping" element={<Shipping />} />
+            <Route path="/returns" element={<Returns />} />
+            <Route path="/contact" element={<Contact />} />
+            <Route path="/faq" element={<FAQ />} />
+          </Routes>
+        </Suspense>
+      </BrowserRouter>
+    </QueryClientProvider>
+  </StrictMode>,
 );
