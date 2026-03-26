@@ -20,10 +20,10 @@ const FAQ = lazy(() => import("./pages/FAQ"));
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
-      staleTime: 30 * 60 * 1000, // 5 min — won't refetch if data is younger than this
-      gcTime: 60 * 60 * 1000, // 10 min — keeps data in memory after component unmounts
-      retry: 1, // retry failed requests once before showing error
-      refetchOnWindowFocus: false, // don't refetch when user switches tabs
+      staleTime: 30 * 60 * 1000,
+      gcTime: 60 * 60 * 1000,
+      retry: 1,
+      refetchOnWindowFocus: false,
     },
   },
 });
