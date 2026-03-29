@@ -44,7 +44,7 @@ function ProductCard({ product }: { product: Product }) {
           </p>
         </div>
         <span className="font-League text-lg leading-none shrink-0 ml-4">
-          ${product.price.toFixed(2)}
+          ₦{product.price.toFixed(2)}
         </span>
       </div>
     </div>
@@ -52,6 +52,7 @@ function ProductCard({ product }: { product: Product }) {
 }
 
 function ProductBrief({ products }: ProductBriefProps) {
+  const navigate = useNavigate();
   const categories = getCategories(products);
 
   return (
@@ -79,6 +80,15 @@ function ProductBrief({ products }: ProductBriefProps) {
               {categoryProducts.map((product) => (
                 <ProductCard key={product._id} product={product} />
               ))}
+            </div>
+            {/* Show More button */}
+            <div className="flex justify-center mt-12">
+              <button
+                onClick={() => navigate(`/category/${encodeURIComponent(cat)}`)}
+                className="outline-2 outline-neutral-900 outline-offset-4 px-16 py-4 uppercase tracking-widest text-sm hover:bg-neutral-300 transition-colors cursor-pointer"
+              >
+                Show More {cat}
+              </button>
             </div>
           </div>
         );

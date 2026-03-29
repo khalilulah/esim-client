@@ -104,7 +104,7 @@ function Cart() {
                         onClick={() =>
                           updateQuantity(product._id, quantity - 1)
                         }
-                        className="w-8 h-8 flex items-center justify-center hover:bg-neutral-100 transition-colors cursor-pointer"
+                        className="w-8 h-8 flex items-center justify-center hover:bg-neutral-300 transition-colors cursor-pointer"
                       >
                         −
                       </button>
@@ -115,7 +115,7 @@ function Cart() {
                         onClick={() =>
                           updateQuantity(product._id, quantity + 1)
                         }
-                        className="w-8 h-8 flex items-center justify-center hover:bg-neutral-100 transition-colors cursor-pointer"
+                        className="w-8 h-8 flex items-center justify-center hover:bg-neutral-300 transition-colors cursor-pointer"
                       >
                         +
                       </button>
@@ -124,7 +124,7 @@ function Cart() {
                     {/* Price + Remove */}
                     <div className="flex items-center gap-6">
                       <span className="font-League text-xl">
-                        ${(product.price * quantity).toFixed(2)}
+                        ₦{(product.price * quantity).toFixed(2)}
                       </span>
                       <button
                         onClick={() => removeFromCart(product._id)}
@@ -153,7 +153,7 @@ function Cart() {
                 </div>
                 <div className="flex justify-between">
                   <span className="uppercase tracking-widest">Subtotal</span>
-                  <span>${totalPrice().toFixed(2)}</span>
+                  <span>₦{totalPrice().toFixed(2)}</span>
                 </div>
                 <div className="flex justify-between">
                   <span className="uppercase tracking-widest">Shipping</span>
@@ -164,16 +164,19 @@ function Cart() {
                 <div className="h-px bg-neutral-200 my-2" />
                 <div className="flex justify-between font-League text-2xl text-neutral-900">
                   <span>Total</span>
-                  <span>${totalPrice().toFixed(2)}</span>
+                  <span>₦{totalPrice().toFixed(2)}</span>
                 </div>
               </div>
 
-              <button className="w-full bg-neutral-900 text-white py-4 uppercase tracking-widest text-sm hover:bg-neutral-700 transition-colors cursor-pointer mb-4">
+              <button
+                onClick={() => navigate("/checkout")}
+                className="w-full bg-neutral-900 text-white py-4 uppercase tracking-widest text-sm hover:bg-neutral-700 transition-colors cursor-pointer mb-4"
+              >
                 Checkout
               </button>
               <button
                 onClick={() => navigate("/")}
-                className="w-full outline-2 outline-neutral-900 outline-offset-4 py-4 uppercase tracking-widest text-sm hover:bg-neutral-50 transition-colors cursor-pointer"
+                className="w-full outline-2 outline-neutral-900 outline-offset-4 py-4 uppercase tracking-widest text-sm hover:bg-neutral-300 transition-colors cursor-pointer"
               >
                 Continue Shopping
               </button>

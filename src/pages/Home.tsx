@@ -7,14 +7,13 @@ import Footer from "../components/Footer";
 const ProductBrief = lazy(() => import("../components/ProductBreif"));
 
 function Home() {
-  const {
-    data: products = [],
-    isLoading,
-    isError,
-  } = useQuery({
-    queryKey: ["products"], // cache key — same key = same cache
-    queryFn: getProducts,
+  const { data, isLoading, isError } = useQuery({
+    queryKey: ["products", "preview"],
+    queryFn: () => getProducts({ limit: 50 }), // get enough for preview grouping
+    staleTime: 30 * 60 * 1000,
   });
+
+  const products = data?.products ?? [];
 
   return (
     <div>

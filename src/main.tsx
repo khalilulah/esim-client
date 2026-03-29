@@ -15,6 +15,10 @@ const Shipping = lazy(() => import("./pages/Shipping"));
 const Returns = lazy(() => import("./pages/Returns"));
 const Contact = lazy(() => import("./pages/Contact"));
 const FAQ = lazy(() => import("./pages/FAQ"));
+const Checkout = lazy(() => import("./pages/Checkout"));
+const OrderConfirmation = lazy(() => import("./pages/OrderConfirmation"));
+const TrackOrder = lazy(() => import("./pages/TrackOrder"));
+const CategoryPage = lazy(() => import("./pages/CategoryPage"));
 
 // Cache config — data stays fresh for 5 minutes, cached for 10 minutes
 const queryClient = new QueryClient({
@@ -43,6 +47,13 @@ createRoot(document.getElementById("root")!).render(
             <Route path="/returns" element={<Returns />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/faq" element={<FAQ />} />
+            <Route path="/checkout" element={<Checkout />} />
+            <Route
+              path="/order-confirmation/:orderNumber"
+              element={<OrderConfirmation />}
+            />
+            <Route path="/track/:orderNumber?" element={<TrackOrder />} />
+            <Route path="/category/:category" element={<CategoryPage />} />
           </Routes>
         </Suspense>
       </BrowserRouter>

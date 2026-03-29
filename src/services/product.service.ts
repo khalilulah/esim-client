@@ -1,8 +1,12 @@
 import api from "../lib/axios";
-import type { Product } from "../types";
+import type { Product, PaginatedProducts } from "../types";
 
-export const getProducts = async (): Promise<Product[]> => {
-  const { data } = await api.get("/products");
+export const getProducts = async (params?: {
+  page?: number;
+  limit?: number;
+  category?: string;
+}): Promise<PaginatedProducts> => {
+  const { data } = await api.get("/products", { params });
   return data.data;
 };
 

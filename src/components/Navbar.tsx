@@ -8,7 +8,7 @@ function Navbar() {
   const [open, setOpen] = useState(false);
 
   return (
-    <nav className="h-15 px-4 md:px-20 border-b border-neutral-200 flex justify-between items-center text-sm relative">
+    <nav className="h-15 px-2 md:px-20 border-b border-neutral-200 flex justify-between items-center text-sm relative">
       {/* Logo */}
       <Link to="/" className="font-League text-2xl uppercase leading-none">
         eSim
@@ -45,6 +45,12 @@ function Navbar() {
           className="uppercase tracking-widest text-xs text-neutral-500 hover:text-neutral-900 transition-colors"
         >
           Contact
+        </Link>
+        <Link
+          to="/track"
+          className="uppercase tracking-widest text-xs text-neutral-500 hover:text-neutral-900 transition-colors"
+        >
+          Track Order
         </Link>
         <button
           onClick={() => navigate("/cart")}
@@ -87,6 +93,7 @@ function Navbar() {
             { to: "/shipping", label: "Shipping" },
             { to: "/faq", label: "FAQ" },
             { to: "/contact", label: "Contact" },
+            { to: "/track", label: "Track Order" },
           ].map((link) => (
             <Link
               key={link.to}
