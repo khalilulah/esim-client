@@ -1,11 +1,11 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-
+import { sendOrderEmails } from "../services/email.service";
 import Navbar from "../components/Navbar";
 import { useCartStore } from "../store/cartStore";
 
 import type { OrderResponse } from "../types";
-import { createOrder, verifyPayment } from "../services/order.service";
+import { createOrder } from "../services/order.service";
 
 const NIGERIAN_STATES = [
   "Abia",
@@ -168,7 +168,6 @@ function Checkout() {
       if (!order) return;
     }
 
-    // capture in a const so the closure always has the right reference
     const confirmedOrder = order;
 
     const handler = window.PaystackPop.setup({
@@ -182,15 +181,29 @@ function Checkout() {
           "Payment was not completed. Your order is saved — you can try again.",
         );
       },
-      callback: async () => {
-        try {
-          await verifyPayment(confirmedOrder.paymentReference);
-        } catch (err) {
-          console.error("Verify failed:", err);
-        } finally {
-          clearCart();
-          navigate(`/order-confirmation/${confirmedOrder.orderNumber}`);
-        }
+      callback: () => {
+        // Use cart items directly — they have all the info needed
+        const itemsText = items
+          .map(
+            ({ product, quantity }) =>
+              `${product.name} x${quantity} — ₦${(product.price * quantity).toLocaleString()}`,
+          )
+          .join("\n");
+
+        sendOrderEmails({
+          orderNumber: confirmedOrder.orderNumber,
+          customerName: form.name,
+          customerEmail: form.email,
+          customerPhone: form.phone,
+          items: itemsText,
+          subtotal: `₦${totalPrice().toLocaleString()}`,
+          shippingFee: `₦${confirmedOrder.shippingFee.toLocaleString()}`,
+          grandTotal: `₦${confirmedOrder.grandTotal.toLocaleString()}`,
+          deliveryAddress: `${form.street}, ${form.city}, ${form.state}`,
+        }).catch(console.error);
+
+        clearCart();
+        navigate(`/order-confirmation/${confirmedOrder.orderNumber}`);
       },
     });
 
