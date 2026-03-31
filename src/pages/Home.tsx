@@ -1,4 +1,4 @@
-import React, { lazy, Suspense } from "react";
+import React, { lazy, Suspense, useRef } from "react";
 import { useQuery } from "@tanstack/react-query";
 import Navbar from "../components/Navbar";
 import { getProducts } from "../services/product.service";
@@ -12,6 +12,7 @@ function Home() {
     queryFn: () => getProducts({ limit: 50 }), // get enough for preview grouping
     staleTime: 30 * 60 * 1000,
   });
+  const productRef = useRef<HTMLDivElement | null>(null);
 
   const products = data?.products ?? [];
 
@@ -20,40 +21,91 @@ function Home() {
       <Navbar />
 
       {/* Hero */}
-      <div
-        className="px-4 md:px-20 mt-8 w-full font-League leading-none flex flex-col gap-4"
-        style={{ fontSize: "clamp(60px, 18vw, 300px)" }}
-      >
-        <div className="flex justify-between items-center">
-          <p className="-ml-1">EMBRACE</p>
-          <img
-            src="https://i.pinimg.com/736x/f4/28/a8/f428a8f8fcda2f0f5247f43acf1dea16.jpg"
-            alt="perfume"
-            className="object-cover"
-            style={{
-              width: "clamp(120px, 25vw, 450px)",
-              height: "clamp(60px, 12.5vw, 225px)",
-            }}
-          />
-          <p>THE</p>
+      <div className="relative px-6 md:px-20 py-28 overflow-hidden">
+        {/* Background accent */}
+        <div className="absolute -top-40 -right-40 w-[1000px] h-[900px] bg-neutral-200 rounded-full blur-3xl opacity-40" />
+
+        {/* Main layout */}
+        <div className="relative flex flex-col lg:flex-row lg:items-end justify-between gap-16">
+          {/* LEFT — Headline */}
+          <div className="flex-1">
+            <div
+              className="font-League uppercase leading-none overflow-hidden"
+              style={{ fontSize: "clamp(70px, 12vw, 180px)" }}
+            >
+              {["EMBRACE", "THE", "EXTRAORDINARY"].map((word, i) => (
+                <div key={word} className="overflow-hidden">
+                  <p
+                    style={{
+                      animation: `slideUp 0.9s cubic-bezier(0.16, 1, 0.3, 1) ${i * 0.2}s both`,
+                    }}
+                  >
+                    {word}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* RIGHT — Content */}
+          <div className="flex flex-col gap-8 max-w-sm">
+            {/* Divider */}
+            <div
+              className="h-px bg-neutral-900 w-0"
+              style={{
+                animation:
+                  "expandLine 1s cubic-bezier(0.16, 1, 0.3, 1) 0.6s forwards",
+              }}
+            />
+
+            {/* Tagline */}
+            <p
+              className="text-neutral-500 text-sm uppercase tracking-widest opacity-0"
+              style={{ animation: "fadeIn 0.8s ease 0.8s forwards" }}
+            >
+              fragrance & hair care — made in Nigeria
+            </p>
+
+            {/* CTA group */}
+            <div
+              className="flex items-center gap-6 opacity-0"
+              style={{ animation: "fadeIn 0.8s ease 1s forwards" }}
+            >
+              <button
+                onClick={() => {
+                  productRef.current?.scrollIntoView({ behavior: "smooth" });
+                }}
+                className="px-10 py-4 bg-black text-white text-sm uppercase tracking-widest cursor-pointer hover:bg-neutral-800 transition"
+              >
+                Shop Now
+              </button>
+            </div>
+          </div>
         </div>
 
-        <div className="flex justify-between items-center">
-          <img
-            src="https://i.pinimg.com/736x/e1/0d/e0/e10de0e5d0d9398818a33b8c21419796.jpg"
-            alt="perfume"
-            className="object-cover"
-            style={{
-              width: "clamp(40px, 8vw, 150px)",
-              height: "clamp(60px, 12.5vw, 225px)",
-            }}
-          />
-          <p>EXTRAORDINARY</p>
-        </div>
+        {/* Bottom subtle line */}
+        <div
+          className="mt-16 h-px bg-neutral-200 w-full opacity-0"
+          style={{ animation: "fadeIn 1s ease 1.2s forwards" }}
+        />
 
-        <button className="outline-2 outline-black outline-offset-4 bg-neutral-50 w-3xs h-8 sm:w-xl sm:h-12 mt-8 self-center text-[20px] sm:text-[30px] leading-normal text-primary-50 rounded-4xl cursor-pointer">
-          Explore
-        </button>
+        {/* Animations */}
+        <style>{`
+    @keyframes slideUp {
+      from { transform: translateY(100%); opacity: 0; }
+      to   { transform: translateY(0); opacity: 1; }
+    }
+
+    @keyframes expandLine {
+      from { width: 0; }
+      to   { width: 100%; }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+  `}</style>
       </div>
 
       {/* Products */}
@@ -82,7 +134,9 @@ function Home() {
               </div>
             }
           >
-            <ProductBrief products={products} />
+            <div ref={productRef}>
+              <ProductBrief products={products} />
+            </div>
           </Suspense>
         )}
       </div>

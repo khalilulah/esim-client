@@ -3,7 +3,7 @@ import PageLayout from "../components/PageLayout";
 
 function Shipping() {
   return (
-    <PageLayout title="Shipping">
+    <PageLayout title="Shipping" image="src\assets\body3.jpg">
       <div>
         <h2 className="font-League uppercase text-2xl text-neutral-900 mb-3">
           Processing Time

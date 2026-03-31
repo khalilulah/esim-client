@@ -6,7 +6,7 @@ const EMAIL = "hello@esim.com";
 
 function Contact() {
   return (
-    <PageLayout title="Contact">
+    <PageLayout title="Contact" image="src\assets\body3.jpg">
       <p>
         We are a small team and we read every message personally. Whether you
         have a question about a product, need help with an order, or just want

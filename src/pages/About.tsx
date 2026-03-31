@@ -5,7 +5,7 @@ import Footer from "../components/Footer";
 function About() {
   return (
     <div>
-      <PageLayout title="About Us">
+      <PageLayout title="About Us" image="src\assets\body3.jpg">
         <p>
           eSim was born from a simple belief — that luxury fragrance and hair
           care should be accessible without compromise. Every product we make is

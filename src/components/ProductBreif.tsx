@@ -56,7 +56,7 @@ function ProductBrief({ products }: ProductBriefProps) {
   const categories = getCategories(products);
 
   return (
-    <section className="px-4 md:px-20 py-20">
+    <section className="px-4 md:px-20">
       {categories.map((cat) => {
         const categoryProducts = products
           .filter((p) => p.category === cat)
