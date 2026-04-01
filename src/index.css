@@ -25,7 +25,11 @@
   --color-primary-900: #1e3a8a; */
 
   /* ====== NEUTRAL / GREY ====== */
-  --color-neutral-50: #222229;
+  --color-neutral-50: #07514d;
+  /* --color-neutral-50: #06413e;
+  --color-neutral-50: #397471;
+  --color-neutral-50: #06413e; */
+  /* --color-neutral-50: #222229; //black */
   --color-neutral-100: #34343d;
   --color-neutral-200: #9b9ba3;
   --color-neutral-300: #d1d5db;

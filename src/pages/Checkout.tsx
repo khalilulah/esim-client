@@ -149,10 +149,21 @@ function Checkout() {
         })),
         totalPrice: totalPrice(),
       };
+
+      console.log("Sending payload:", JSON.stringify(payload, null, 2)); // add this
+
       const order = await createOrder(payload);
       setCreatedOrder(order);
       return order;
-    } catch {
+    } catch (err: unknown) {
+      // Add this to see the actual server error
+      if (err instanceof Error) {
+        console.error("Order error:", err.message);
+      }
+      // axios error has response data
+      const axiosErr = err as { response?: { data?: unknown } };
+      console.error("Server response:", axiosErr.response?.data);
+
       setError("Failed to create order. Please try again.");
       return null;
     } finally {
