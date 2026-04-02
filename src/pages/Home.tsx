@@ -1,4 +1,4 @@
-import React, { lazy, Suspense, useRef } from "react";
+import { lazy, Suspense, useRef } from "react";
 import { useQuery } from "@tanstack/react-query";
 import Navbar from "../components/Navbar";
 import { getProducts } from "../services/product.service";

@@ -1,5 +1,3 @@
-import React from "react";
-
 const WHATSAPP_NUMBER = "2348012345678"; // replace with your real number
 
 function WhatsAppButton() {
