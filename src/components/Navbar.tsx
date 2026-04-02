@@ -8,7 +8,7 @@ function Navbar() {
   const [open, setOpen] = useState(false);
 
   return (
-    <nav className="h-15 px-2 md:px-20 border-b border-neutral-200 flex justify-between items-center text-sm relative">
+    <nav className="h-15 px-2 md:px-20 border-b border-neutral-200 flex justify-between items-center text-sm relative md:sticky md:top-0 md:z-50 bg-white">
       {/* Logo */}
       <Link to="/" className="font-League text-2xl uppercase leading-none">
         eSim

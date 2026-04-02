@@ -11,6 +11,8 @@ function Home() {
     queryKey: ["products", "preview"],
     queryFn: () => getProducts({ limit: 50 }), // get enough for preview grouping
     staleTime: 30 * 60 * 1000,
+    retry: 3,
+    refetchOnWindowFocus: false,
   });
   const productRef = useRef<HTMLDivElement | null>(null);
 
