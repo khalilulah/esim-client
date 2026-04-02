@@ -1,3 +1,4 @@
+import bodyImage from "../assets/body3.jpg";
 import { useState } from "react";
 import Navbar from "../components/Navbar";
 
@@ -75,7 +76,7 @@ function FAQ() {
           <div className="relative w-[75%] h-[75%] border border-neutral-300 p-4">
             <div className="w-full h-full overflow-hidden">
               <img
-                src="src\assets\body3.jpg"
+                src={bodyImage}
                 alt="image"
                 className="w-full h-full object-cover hover:scale-105 transition duration-700"
               />

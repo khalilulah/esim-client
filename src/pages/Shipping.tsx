@@ -1,8 +1,8 @@
 import PageLayout from "../components/PageLayout";
-
+import bodyImage from "../assets/body3.jpg";
 function Shipping() {
   return (
-    <PageLayout title="Shipping" image="src\assets\body3.jpg">
+    <PageLayout title="Shipping" image={bodyImage}>
       <div>
         <h2 className="font-League uppercase text-2xl text-neutral-900 mb-3">
           Processing Time

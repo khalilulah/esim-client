@@ -1,3 +1,4 @@
+import bodyImage from "../assets/body3.jpg";
 import PageLayout from "../components/PageLayout";
 
 const WHATSAPP = "2348012345678";
@@ -5,7 +6,7 @@ const EMAIL = "hello@esim.com";
 
 function Contact() {
   return (
-    <PageLayout title="Contact" image="src\assets\body3.jpg">
+    <PageLayout title="Contact" image={bodyImage}>
       <p>
         We are a small team and we read every message personally. Whether you
         have a question about a product, need help with an order, or just want
